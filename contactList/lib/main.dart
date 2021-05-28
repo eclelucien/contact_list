@@ -19,10 +19,12 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         // Handle '/'
         if (settings.name == '/welcome') {
-          return MaterialPageRoute(builder: (context) => HomeScreen());
+          return MaterialPageRoute(
+              builder: (context) => ContactList(titulo: 'Lista de contato'));
         }
 
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(
+            builder: (context) => ContactList(titulo: 'Lista de contato'));
       },
     );
   }
@@ -35,7 +37,7 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
             title: Center(
               child: Text(
-                'Agenda',
+                'My Contacts',
                 textAlign: TextAlign.center,
               ),
             ),

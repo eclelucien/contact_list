@@ -3,7 +3,7 @@ class Contact {
   String email;
   int id;
 
-  Contact({this.name, this.email});
+  Contact(this.name, this.email);
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();

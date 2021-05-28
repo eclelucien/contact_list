@@ -43,7 +43,7 @@ class DatabaseHelper {
     await db.execute('CREATE TABLE $tabelaNome('
         '$colId INTEGER PRIMARY KEY AUTOINCREMENT,'
         '$colNome TEXT,'
-        '$colEmail TEXT,);');
+        '$colEmail TEXT);');
   }
 
   Future<List<Map<String, dynamic>>> getContactsMapList() async {
@@ -57,22 +57,25 @@ class DatabaseHelper {
   Future<int> inserirContact(Contact contact) async {
     Database db = await this.database;
     var result = await db.insert(tabelaNome, contact.toMap());
+    print(contact.id);
     return result;
   }
 
-  Future<int> atualizarContact(Contact contact) async {
+  Future<int> atualizarContact(Contact contact, int id) async {
     var db = await this.database;
 
     var result = await db.rawUpdate(
-        "UPDATE $tabelaNome SET $colNome = '${contact.name}', $colEmail = '${contact.email}' WHERE  '$colId = '$contact.id' ");
+        "UPDATE $tabelaNome SET $colNome = '${contact.name}', $colEmail = '${contact.email}' WHERE  '$colId = $id' ");
+    print(id);
     return result;
   }
 
-  Future<int> apagar(Contact contact) async {
+  Future<int> apagar(int id) async {
     var db = await this.database;
 
-    int result = await db
-        .rawDelete('DELETE FROM $tabelaNome WHERE $colId = $contact.id');
+    int result =
+        await db.rawDelete('DELETE FROM $tabelaNome WHERE $colId = $id');
+    print(id);
     return result;
   }
 
